@@ -1,498 +1,625 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <title>Кафе “Aroma” — лучший кофе в городе</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Современное кафе с авторским кофе и десертами. Забронируйте столик онлайн или закажите кофе с собой." />
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
-
-  <!-- Иконки -->
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-  <!-- Стили -->
-  <style>
-    :root {
-      --bg-dark: #0b0a0a;
-      --bg-card: #161414;
-      --accent: #f5a623;
-      --accent-soft: rgba(245, 166, 35, 0.14);
-      --text-main: #f9f5ef;
-      --text-soft: #b0a79b;
-      --coffee: #4b2e23;
-    }
-
-    body {
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #1f130c 0, #050304 50%, #050505 100%);
-      color: var(--text-main);
-    }
-
-    .heading-font {
-      font-family: "Playfair Display", "Times New Roman", serif;
-      letter-spacing: 0.04em;
-    }
-
-    /* Стеклянные карточки */
-    .glass {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow:
-        0 18px 45px rgba(0, 0, 0, 0.75),
-        0 0 0 1px rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(16px);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #f5a623, #ffce61);
-      color: #1b1308;
-      box-shadow: 0 18px 40px rgba(245, 166, 35, 0.45);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px) scale(1.01);
-      box-shadow: 0 25px 60px rgba(245, 166, 35, 0.6);
-    }
-
-    .btn-outline {
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      background: rgba(15, 13, 12, 0.7);
-    }
-
-    .tag-pill {
-      background: rgba(245, 166, 35, 0.12);
-      border: 1px solid rgba(245, 166, 35, 0.5);
-    }
-
-    /* Параллакс кофе-чашка */
-    .hero-coffee {
-      background: radial-gradient(circle at 30% 20%, rgba(245, 166, 35, 0.3), transparent 60%),
-                  radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08), transparent 55%);
-    }
-
-    .hero-coffee-inner {
-      background: conic-gradient(from 140deg, #2b1810, #7b4a32, #c28b5a, #2b1810);
-    }
-
-    .hero-coffee-foam {
-      background: radial-gradient(circle at 30% 30%, #fdf6eb 0, #f7e0c0 40%, #f0c999 70%);
-    }
-
-    .hero-glow {
-      filter: blur(40px);
-      opacity: 0.8;
-    }
-
-    /* Скролл плавный */
-    html {
-      scroll-behavior: smooth;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приволжская ДШИ • Твори • Учись • Вдохновляйся</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Inter:wght@400;500;600&amp;display=swap');
+        
+        :root {
+            --primary: #7e22ce;
+        }
+        
+        .tail-container {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #7e22ce 0%, #ec4899 30%, #22d3ee 70%, #eab308 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: #facc15;
+            transition: width 0.4s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-20px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+        }
+        
+        .gallery-img {
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .gallery-img:hover {
+            transform: scale(1.15) rotate(2deg);
+            filter: brightness(1.1) saturate(1.3);
+        }
+        
+        .hero-text {
+            animation: fadeInUp 1.2s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .section-header {
+            position: relative;
+        }
+        
+        .section-header:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #eab308, #ec4899);
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 9999px;
+        }
+    </style>
 </head>
-
-<body class="antialiased text-white">
-  <!-- Навбар -->
-  <header class="fixed top-0 inset-x-0 z-40">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6">
-      <div class="mt-4 flex items-center justify-between rounded-2xl glass px-4 py-3 sm:px-6 sm:py-3">
-        <div class="flex items-center gap-3">
-          <div class="flex h-9 w-9 items-center justify-center rounded-full bg-[rgba(245,166,35,0.12)] border border-[rgba(245,166,35,0.6)]">
-            <i class="ph ph-coffee text-[1.3rem] text-[#f5a623]"></i>
-          </div>
-          <div class="leading-tight">
-            <div class="heading-font text-sm uppercase tracking-[0.25em] text-[rgba(255,255,255,0.82)]">Aroma</div>
-            <p class="text-[11px] text-[rgba(255,255,255,0.48)]">Кофе & десерты</p>
-          </div>
-        </div>
-
-        <nav class="hidden items-center gap-6 text-sm text-[rgba(255,255,255,0.76)] sm:flex">
-          <a href="#menu" class="hover:text-white/100 transition-colors">Меню</a>
-          <a href="#about" class="hover:text-white/100 transition-colors">О нас</a>
-          <a href="#gallery" class="hover:text-white/100 transition-colors">Интерьер</a>
-          <a href="#contact" class="hover:text-white/100 transition-colors">Контакты</a>
-        </nav>
-
-        <div class="flex items-center gap-2">
-          <button
-            onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})"
-            class="hidden rounded-full border border-[rgba(255,255,255,0.18)] bg-black/40 px-4 py-1.5 text-xs text-[rgba(255,255,255,0.85)] hover:bg-black/70 sm:inline-flex">
-            Забронировать
-          </button>
-          <button
-            class="btn-primary rounded-full px-4 py-1.5 text-xs font-semibold shadow-lg flex items-center gap-1.5">
-            <i class="ph ph-phone-call text-[1rem]"></i>
-            <span>+7 (999) 777-55-22</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <main class="relative overflow-hidden pt-28 sm:pt-32">
-    <section class="mx-auto max-w-6xl px-4 sm:px-6">
-      <div class="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-center">
-        <!-- Текст -->
-        <div class="space-y-7">
-          <div class="inline-flex items-center gap-2 rounded-full bg-black/40 px-3 py-1 text-[11px] text-[rgba(255,255,255,0.72)] border border-white/10">
-            <span class="h-1.5 w-1.5 rounded-full bg-[#27e29d]"></span>
-            <span>Открыты сегодня с 08:00 до 23:00</span>
-          </div>
-
-          <div class="space-y-3">
-            <h1 class="heading-font text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight">
-              Кафе «Aroma» — <span class="text-[#f5a623]">ваш</span> идеальный кофе<br class="hidden sm:block" />
-              в самом сердце города.
-            </h1>
-            <p class="text-sm sm:text-base text-[rgba(255,255,255,0.7)] max-w-xl">
-              Авторский кофе, десерты от шеф-кондитера и атмосфера, в которую хочется возвращаться. 
-              Ланч-меню, свежая выпечка и кофе с собой за 3 минуты.
-            </p>
-          </div>
-
-          <div class="flex flex-wrap items-center gap-3">
-            <button
-              onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})"
-              class="btn-primary rounded-full px-6 py-2.5 text-sm font-semibold flex items-center gap-2">
-              <i class="ph ph-calendar-check text-[1.1rem]"></i>
-              <span>Забронировать столик</span>
-            </button>
-            <button
-              onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})"
-              class="btn-outline rounded-full px-5 py-2.5 text-sm text-[rgba(255,255,255,0.85)] flex items-center gap-2">
-              <i class="ph ph-cup-hot text-[1.1rem]"></i>
-              <span>Посмотреть меню</span>
-            </button>
-          </div>
-
-          <div class="flex flex-wrap gap-4 text-xs text-[rgba(255,255,255,0.65)]">
-            <div class="flex items-center gap-2">
-              <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[rgba(245,166,35,0.14)] text-[#f5a623]">
-                <i class="ph ph-star-half"></i>
-              </span>
-              <div>
-                <div class="font-semibold text-[rgba(255,255,255,0.9)]">4.9 / 5</div>
-                <div>на Google и Яндекс</div>
-              </div>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[rgba(39,226,157,0.14)] text-[#27e29d]">
-                <i class="ph ph-clock"></i>
-              </span>
-              <div>
-                <div class="font-semibold text-[rgba(255,255,255,0.9)]">Кофе за 3 минуты</div>
-                <div>или напиток в подарок</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Картинка / кофе -->
-        <div class="relative hero-coffee">
-          <div class="absolute -top-10 -left-4 h-40 w-40 rounded-full bg-[#f5a623]/30 hero-glow"></div>
-          <div class="absolute bottom-0 -right-6 h-40 w-40 rounded-full bg-[#27e29d]/20 hero-glow"></div>
-
-          <div class="relative mx-auto flex max-w-xs flex-col items-center gap-5">
-            <div class="glass relative mt-4 w-full rounded-3xl px-5 py-5">
-              <div class="flex items-center justify-between">
-                <div class="space-y-1">
-                  <p class="text-[11px] uppercase tracking-[0.18em] text-[rgba(255,255,255,0.6)]">Сегодня</p>
-                  <p class="text-sm font-semibold">Спешелти эспрессо</p>
-                  <p class="text-xs text-[rgba(255,255,255,0.6)]">Эфиопия, нотки какао и карамели</p>
+<body class="tail-container bg-zinc-950 text-white overflow-x-hidden">
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <!-- LOGO -->
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-violet-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-2xl">
+                    <i class="fa-solid fa-palette text-3xl text-white"></i>
                 </div>
-                <div class="text-right">
-                  <p class="text-[11px] text-[rgba(255,255,255,0.65)] line-through">320 ₽</p>
-                  <p class="text-lg font-semibold text-[#f5a623]">250 ₽</p>
-                  <p class="mt-1 inline-flex items-center rounded-full bg-[rgba(245,166,35,0.18)] px-2 py-1 text-[10px] text-[#f5a623]">
-                    до 16:00 — скидка 20%
-                  </p>
+                <div>
+                    <span class="text-3xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-pink-400">ПРИВОЛЖСКАЯ</span>
+                    <span class="block text-xs font-medium tracking-[3px] text-cyan-400 -mt-1">ДЕТСКАЯ ШКОЛА ИСКУССТВ</span>
                 </div>
-              </div>
             </div>
 
-            <!-- Чашка -->
-            <div class="relative w-full">
-              <div class="absolute inset-0 translate-y-8 scale-105 bg-black/80 blur-2xl"></div>
-              <div
-                class="relative hero-coffee-inner mx-auto h-64 w-64 max-w-full rounded-[999px] border border-[rgba(255,255,255,0.08)] p-3">
-                <div
-                  class="hero-coffee-foam relative flex h-full w-full items-center justify-center rounded-[999px] border border-[rgba(255,255,255,0.15)]">
-                  <!-- Имитация рисунка на кофе -->
-                  <div class="absolute h-28 w-28 rounded-full border border-[rgba(173,114,79,0.7)]"></div>
-                  <div class="absolute h-16 w-16 rounded-full border border-[rgba(173,114,79,0.5)]"></div>
-                  <div class="absolute h-8 w-8 rounded-full bg-[rgba(173,114,79,0.35)]"></div>
-                </div>
-                <!-- Ручка -->
-                <div class="absolute right-3 top-1/2 h-16 w-10 -translate-y-1/2 rounded-full border border-[rgba(255,255,255,0.3)] bg-transparent"></div>
-              </div>
+            <!-- DESKTOP MENU -->
+            <div class="hidden md:flex items-center gap-9 text-sm font-medium">
+                <a href="#about" class="nav-link text-white hover:text-yellow-300">О школе</a>
+                <a href="#directions" class="nav-link text-white hover:text-yellow-300">Направления</a>
+                <a href="#gallery" class="nav-link text-white hover:text-yellow-300">Галерея</a>
+                <a href="#team" class="nav-link text-white hover:text-yellow-300">Коллективы</a>
+                <a href="#contacts" class="nav-link text-white hover:text-yellow-300">Контакты</a>
             </div>
 
-            <div class="glass w-full rounded-2xl px-4 py-3 text-[11px] text-[rgba(255,255,255,0.75)] flex items-center justify-between">
-              <div>
-                <p class="font-semibold text-[rgba(255,255,255,0.92)]">3-й напиток в подарок</p>
-                <p>при заказе двух капучино или рафов до 12:00</p>
-              </div>
-              <span class="tag-pill inline-flex items-center rounded-full px-2 py-1 text-[10px] text-[#f5a623]">
-                Акция недели
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Блок “Почему мы” -->
-    <section id="about" class="mx-auto mt-20 max-w-6xl px-4 sm:px-6">
-      <div class="grid gap-6 md:grid-cols-3">
-        <div class="glass rounded-3xl p-5">
-          <h3 class="text-sm font-semibold mb-2">Спешелти кофе</h3>
-          <p class="text-xs text-[rgba(255,255,255,0.75)]">
-            Зерно от обжарщиков класса specialty, авторские рецепты и бариста, прошедшие обучение.
-          </p>
-        </div>
-        <div class="glass rounded-3xl p-5">
-          <h3 class="text-sm font-semibold mb-2">Атмосфера</h3>
-          <p class="text-xs text-[rgba(255,255,255,0.75)]">
-            Тёплый свет, живая музыка по пятницам и розетки у каждого столика — удобно и для встреч, и для работы.
-          </p>
-        </div>
-        <div class="glass rounded-3xl p-5">
-          <h3 class="text-sm font-semibold mb-2">Локация</h3>
-          <p class="text-xs text-[rgba(255,255,255,0.75)]">
-            5 минут пешком от центра, удобная парковка и зона pick-up для заказов навынос.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Меню -->
-    <section id="menu" class="mx-auto mt-20 max-w-6xl px-4 sm:px-6">
-      <div class="flex items-end justify-between gap-4">
-        <div>
-          <h2 class="heading-font text-2xl sm:text-3xl mb-1">Хиты меню</h2>
-          <p class="text-xs sm:text-sm text-[rgba(255,255,255,0.7)]">
-            Подборка любимых напитков и десертов гостей «Aroma».
-          </p>
-        </div>
-        <span class="hidden text-[11px] text-[rgba(255,255,255,0.6)] sm:inline">
-          Полное меню доступно в кафе и по QR‑коду
-        </span>
-      </div>
-
-      <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <!-- Карточка напитка -->
-        <article class="glass rounded-3xl p-4 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <h3 class="text-sm font-semibold">Flat White</h3>
-              <span class="tag-pill px-2 py-1 text-[10px] text-[#f5a623]">бестселлер</span>
-            </div>
-            <p class="text-xs text-[rgba(255,255,255,0.7)] mb-3">
-              Плотный эспрессо с бархатной молочной пеной. Идеальный баланс вкуса.
-            </p>
-          </div>
-          <div class="flex items-center justify-between text-xs text-[rgba(255,255,255,0.85)]">
-            <span>250 мл</span>
-            <span class="font-semibold text-[#f5a623]">260 ₽</span>
-          </div>
-        </article>
-
-        <article class="glass rounded-3xl p-4 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <h3 class="text-sm font-semibold">Раф ванильный</h3>
-            </div>
-            <p class="text-xs text-[rgba(255,255,255,0.7)] mb-3">
-              Нежный сливочный раф с натуральной ванилью и карамельной крошкой.
-            </p>
-          </div>
-          <div class="flex items-center justify-between text-xs text-[rgba(255,255,255,0.85)]">
-            <span>300 мл</span>
-            <span class="font-semibold text-[#f5a623]">290 ₽</span>
-          </div>
-        </article>
-
-        <article class="glass rounded-3xl p-4 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <h3 class="text-sm font-semibold">Чизкейк «Aroma»</h3>
-            </div>
-            <p class="text-xs text-[rgba(255,255,255,0.7)] mb-3">
-              Классический чизкейк на хрустящей основе с солёной карамелью.
-            </p>
-          </div>
-          <div class="flex items-center justify-between text-xs text-[rgba(255,255,255,0.85)]">
-            <span>1 порция</span>
-            <span class="font-semibold text-[#f5a623]">320 ₽</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Галерея (условная) -->
-    <section id="gallery" class="mx-auto mt-20 max-w-6xl px-4 sm:px-6">
-      <div class="flex items-center justify-between mb-5">
-        <h2 class="heading-font text-2xl sm:text-3xl">Интерьер</h2>
-        <span class="text-[11px] text-[rgba(255,255,255,0.6)]">Загружаются ваши фото</span>
-      </div>
-      <div class="grid gap-4 md:grid-cols-3">
-        <div class="glass h-32 rounded-3xl bg-gradient-to-tr from-[#f5a623]/30 to-transparent flex items-end p-3 text-[11px] text-[rgba(255,255,255,0.85)]">
-          Уютный зал с мягким светом
-        </div>
-        <div class="glass h-32 rounded-3xl bg-gradient-to-tr from-[#27e29d]/24 to-transparent flex items-end p-3 text-[11px] text-[rgba(255,255,255,0.85)]">
-          Барная стойка и зона to‑go
-        </div>
-        <div class="glass h-32 rounded-3xl bg-gradient-to-tr from-white/16 to-transparent flex items-end p-3 text-[11px] text-[rgba(255,255,255,0.85)]">
-          Летняя терраса (с мая по сентябрь)
-        </div>
-      </div>
-    </section>
-
-    <!-- Бронирование -->
-    <section id="booking" class="mx-auto mt-20 max-w-6xl px-4 sm:px-6">
-      <div class="grid gap-8 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:items-center">
-        <div>
-          <h2 class="heading-font text-2xl sm:text-3xl mb-2">Бронирование столика</h2>
-          <p class="text-xs sm:text-sm text-[rgba(255,255,255,0.7)] mb-4">
-            Оставьте контакты — мы перезвоним и подтвердим бронь в течение 10 минут.
-          </p>
-
-          <form class="glass rounded-3xl p-5 space-y-3">
-            <div class="grid gap-3 sm:grid-cols-2">
-              <div class="space-y-1">
-                <label class="text-[11px] text-[rgba(255,255,255,0.75)]">Имя</label>
-                <input
-                  type="text"
-                  placeholder="Как к вам обращаться?"
-                  class="w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2 text-xs outline-none focus:border-[#f5a623]/80" />
-              </div>
-              <div class="space-y-1">
-                <label class="text-[11px] text-[rgba(255,255,255,0.75)]">Телефон</label>
-                <input
-                  type="tel"
-                  placeholder="+7 (___) ___-__-__"
-                  class="w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2 text-xs outline-none focus:border-[#f5a623]/80" />
-              </div>
-            </div>
-
-            <div class="grid gap-3 sm:grid-cols-3">
-              <div class="space-y-1">
-                <label class="text-[11px] text-[rgba(255,255,255,0.75)]">Дата</label>
-                <input
-                  type="date"
-                  class="w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2 text-xs outline-none focus:border-[#f5a623]/80" />
-              </div>
-              <div class="space-y-1">
-                <label class="text-[11px] text-[rgba(255,255,255,0.75)]">Время</label>
-                <input
-                  type="time"
-                  class="w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2 text-xs outline-none focus:border-[#f5a623]/80" />
-              </div>
-              <div class="space-y-1">
-                <label class="text-[11px] text-[rgba(255,255,255,0.75)]">Гостей</label>
-                <select
-                  class="w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2 text-xs outline-none focus:border-[#f5a623]/80">
-                  <option>2</option>
-                  <option>3–4</option>
-                  <option>5–6</option>
-                  <option>6+</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="space-y-1">
-              <label class="text-[11px] text-[rgba(255,255,255,0.75)]">Комментарий</label>
-              <textarea
-                rows="2"
-                placeholder="Особые пожелания, аллергии, повод встречи"
-                class="w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2 text-xs outline-none focus:border-[#f5a623]/80"></textarea>
-            </div>
-
-            <button
-              type="submit"
-              class="btn-primary mt-2 w-full rounded-xl py-2.5 text-xs font-semibold flex items-center justify-center gap-2">
-              <i class="ph ph-paper-plane-tilt text-[1rem]"></i>
-              Отправить заявку
+            <!-- MOBILE HAMBURGER -->
+            <button id="mobile-menu-btn" class="md:hidden text-3xl text-yellow-300">
+                <i class="fa-solid fa-bars"></i>
             </button>
-
-            <p class="text-[10px] text-[rgba(255,255,255,0.55)]">
-              Нажимая на кнопку, вы соглашаетесь с обработкой персональных данных и политикой конфиденциальности.
-            </p>
-          </form>
         </div>
 
-        <!-- Контакты -->
-        <div id="contact" class="glass rounded-3xl p-5 space-y-4">
-          <h3 class="text-sm font-semibold">Как нас найти</h3>
-          <div class="space-y-2 text-xs text-[rgba(255,255,255,0.8)]">
-            <p>г. Ваш город, ул. Примерная, 10</p>
-            <p><span class="text-[rgba(255,255,255,0.6)]">Метро:</span> Центральная, 5 минут пешком</p>
-            <p><span class="text-[rgba(255,255,255,0.6)]">Телефон:</span> +7 (999) 777‑55‑22</p>
-            <p><span class="text-[rgba(255,255,255,0.6)]">Instagram*:</span> @aroma.cafe</p>
-          </div>
-          <div class="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-          <p class="text-[11px] text-[rgba(255,255,255,0.7)]">
-            Бесплатная парковка для гостей на 8 мест. Wi‑Fi, розетки, вода и лайтовая музыка — всё, чтобы вам было комфортно.
-          </p>
+        <!-- MOBILE MENU -->
+        <div id="mobile-menu" class="hidden md:hidden bg-zinc-900 border-t border-white/10 px-6 py-8">
+            <div class="flex flex-col gap-6 text-lg font-medium">
+                <a href="#about" class="mobile-link">О школе</a>
+                <a href="#directions" class="mobile-link">Направления</a>
+                <a href="#gallery" class="mobile-link">Галерея</a>
+                <a href="#team" class="mobile-link">Коллективы</a>
+                <a href="#contacts" class="mobile-link">Контакты</a>
+            </div>
         </div>
-      </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="hero" class="hero-bg min-h-screen flex items-center relative overflow-hidden">
+        <!-- OVERLAY -->
+        <div class="absolute inset-0 bg-black/30"></div>
+        
+        <!-- BACKGROUND DECOR -->
+        <div class="absolute inset-0 bg-[radial-gradient(#ffffff10_1px,transparent_1px)] [background-size:40px_40px] opacity-20"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 pt-24 relative z-10">
+            <div class="grid md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-7" data-aos="fade-right">
+                    <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-2 rounded-3xl mb-6">
+                        <div class="w-3 h-3 bg-lime-400 rounded-full animate-pulse"></div>
+                        <span class="text-sm font-medium tracking-widest">с 1968 года • Самарская область</span>
+                    </div>
+                    
+                    <h1 class="hero-text text-7xl md:text-8xl font-black leading-none tracking-tighter mb-6">
+                        ТВОРИ.<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-pink-300 to-cyan-300">УЧИСЬ.</span><br>
+                        ВДОХНОВЛЯЙСЯ
+                    </h1>
+                    
+                    <p class="max-w-lg text-xl text-white/90 mb-10">
+                        Приволжская детская школа искусств<br>
+                        <span class="font-medium">326 учеников • 18 педагогов • 5 направлений</span>
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#directions" 
+                           class="group px-10 py-6 bg-white text-violet-700 font-bold text-lg rounded-3xl flex items-center gap-3 hover:bg-yellow-400 hover:text-black transition-all shadow-2xl">
+                            Выбрать направление
+                            <i class="fa-solid fa-arrow-right group-active:rotate-45 transition-transform"></i>
+                        </a>
+                        
+                        <a href="#contacts" 
+                           class="px-10 py-6 border-2 border-white/70 hover:border-white font-medium text-lg rounded-3xl transition-all">
+                            Записаться на пробный урок
+                        </a>
+                    </div>
+                    
+                    <!-- STATS -->
+                    <div class="mt-16 grid grid-cols-3 gap-8 text-center">
+                        <div>
+                            <div class="text-5xl font-black text-yellow-300">1968</div>
+                            <div class="text-xs uppercase tracking-widest text-white/70 mt-1">год основания</div>
+                        </div>
+                        <div>
+                            <div class="text-5xl font-black text-pink-300">326</div>
+                            <div class="text-xs uppercase tracking-widest text-white/70 mt-1">учеников</div>
+                        </div>
+                        <div>
+                            <div class="text-5xl font-black text-cyan-300">18</div>
+                            <div class="text-xs uppercase tracking-widest text-white/70 mt-1">педагогов</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- RIGHT SIDE DECOR -->
+                <div class="md:col-span-5 relative hidden lg:block">
+                    <div class="absolute -right-10 -top-10 w-96 h-96 bg-white/10 backdrop-blur-3xl rounded-[6rem] rotate-12 shadow-2xl border border-white/20 flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fa-solid fa-music text-8xl text-yellow-300 mb-6 animate-bounce"></i>
+                            <div class="text-3xl font-black tracking-widest">МУЗЫКА</div>
+                            <div class="text-3xl font-black tracking-widest text-pink-300">ТАНЕЦ</div>
+                            <div class="text-3xl font-black tracking-widest">ТЕАТР</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SCROLL INDICATOR -->
+        <div class="absolute bottom-10 left-1/2 flex flex-col items-center gap-2 text-xs tracking-widest">
+            <div class="animate-bounce">↓</div>
+            <span>Прокрутить</span>
+        </div>
+        
+        <!-- FLOATING ICONS -->
+        <div class="absolute top-32 right-20 text-6xl opacity-20 animate-float">🎹</div>
+        <div class="absolute bottom-40 left-32 text-5xl opacity-20 animate-float-delay">🩰</div>
+        <div class="absolute top-1/2 left-1/3 text-7xl opacity-20 animate-float-delay2">🎭</div>
+    </header>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-28 bg-zinc-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-up">
+                    <div class="uppercase text-pink-400 text-sm tracking-[4px] mb-3">с 1968 года</div>
+                    <h2 class="section-header text-5xl font-black mb-8">Приволжская<br>детская школа искусств</h2>
+                    
+                    <div class="prose prose-invert text-lg max-w-none">
+                        <p class="mb-6">
+                            Основана в 1968 году в селе Приволжье Самарской области. 
+                            Сегодня это современный центр творческого развития для 326 детей.
+                        </p>
+                        <p>
+                            Директор — <span class="font-semibold text-yellow-300">Адияков Геннадий Владимирович</span> (руководит школой с 1986 года). 
+                            Школа имеет собственное здание с концертным залом, оркестром народных инструментов, хореографическими ансамблями и театральными коллективами.
+                        </p>
+                    </div>
+                    
+                    <div class="mt-12 flex gap-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-violet-500/10 rounded-2xl flex items-center justify-center text-4xl">🏛️</div>
+                            <div>
+                                <div class="font-semibold">Концертный зал</div>
+                                <div class="text-sm text-white/60">на 150 мест</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-pink-500/10 rounded-2xl flex items-center justify-center text-4xl">🎤</div>
+                            <div>
+                                <div class="font-semibold">Выпускники</div>
+                                <div class="text-sm text-white/60">поступают в вузы искусств</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PHOTO BLOCK -->
+                <div data-aos="fade-left" class="relative">
+                    <img src="https://picsum.photos/id/1015/800/900" 
+                         alt="Здание школы искусств с. Приволжье"
+                         class="rounded-3xl shadow-2xl w-full object-cover h-[620px]">
+                    <div class="absolute -bottom-6 -left-6 bg-gradient-to-br from-yellow-400 to-pink-500 text-black p-8 rounded-3xl max-w-[260px]">
+                        <div class="text-6xl font-black">18</div>
+                        <div class="font-medium text-lg">опытных педагогов</div>
+                        <div class="text-xs mt-6 opacity-75">с высшим музыкальным и педагогическим образованием</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Футер -->
-    <footer class="mt-16 border-t border-white/5">
-      <div class="mx-auto max-w-6xl px-4 py-6 sm:px-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <p class="text-[11px] text-[rgba(255,255,255,0.5)]">
-          © 2026 Кафе «Aroma». Все права защищены.
-        </p>
-        <p class="text-[10px] text-[rgba(255,255,255,0.45)]">
-          Сделано с любовью к кофе и дизайну.
-        </p>
-      </div>
+    <!-- DIRECTIONS -->
+    <section id="directions" class="py-28 bg-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="inline-block px-8 py-3 bg-white/5 rounded-3xl text-yellow-400 text-sm font-medium mb-4">НАПРАВЛЕНИЯ ОБУЧЕНИЯ</div>
+                <h2 class="text-6xl font-black tracking-tighter">Выбери своё искусство</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- CARD 1 -->
+                <div data-aos="fade-up" data-aos-delay="100" class="card-hover bg-zinc-900 border border-white/10 rounded-3xl p-8 group">
+                    <div class="h-14 w-14 bg-orange-500 text-white rounded-2xl flex items-center justify-center text-4xl mb-6 group-hover:rotate-12 transition-transform">🎹</div>
+                    <h3 class="text-3xl font-bold mb-3">Музыкальное отделение</h3>
+                    <ul class="text-white/70 space-y-3 text-base">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-yellow-300"></i> Фортепиано</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-yellow-300"></i> Баян / Аккордеон</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-yellow-300"></i> Гитара / Домра / Балалайка</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-yellow-300"></i> Синтезатор</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-yellow-300"></i> Эстрадный вокал</li>
+                    </ul>
+                </div>
+                
+                <!-- CARD 2 -->
+                <div data-aos="fade-up" data-aos-delay="200" class="card-hover bg-zinc-900 border border-white/10 rounded-3xl p-8 group">
+                    <div class="h-14 w-14 bg-pink-500 text-white rounded-2xl flex items-center justify-center text-4xl mb-6 group-hover:rotate-12 transition-transform">🩰</div>
+                    <h3 class="text-3xl font-bold mb-3">Хореографическое отделение</h3>
+                    <ul class="text-white/70 space-y-3 text-base">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-yellow-300"></i> Классический танец</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-yellow-300"></i> Народный танец</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-yellow-300"></i> Современный танец</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-yellow-300"></i> Ансамбли «Непоседы» и «Росинка»</li>
+                    </ul>
+                </div>
+                
+                <!-- CARD 3 -->
+                <div data-aos="fade-up" data-aos-delay="300" class="card-hover bg-zinc-900 border border-white/10 rounded-3xl p-8 group">
+                    <div class="h-14 w-14 bg-cyan-500 text-white rounded-2xl flex items-center justify-center text-4xl mb-6 group-hover:rotate-12 transition-transform">🎭</div>
+                    <h3 class="text-3xl font-bold mb-3">Театральное отделение</h3>
+                    <ul class="text-white/70 space-y-3 text-base">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-yellow-300"></i> Академический театр</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-yellow-300"></i> Кукольный театр</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-yellow-300"></i> Фольклорный театр</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-yellow-300"></i> Учебный театр «Муравейник»</li>
+                    </ul>
+                </div>
+                
+                <!-- CARD 4 -->
+                <div data-aos="fade-up" data-aos-delay="400" class="card-hover bg-zinc-900 border border-white/10 rounded-3xl p-8 group">
+                    <div class="h-14 w-14 bg-lime-500 text-white rounded-2xl flex items-center justify-center text-4xl mb-6 group-hover:rotate-12 transition-transform">🎤</div>
+                    <h3 class="text-3xl font-bold mb-3">Вокальное и хоровое</h3>
+                    <ul class="text-white/70 space-y-3 text-base">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-yellow-300"></i> Народное хоровое пение</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-yellow-300"></i> Академический хор</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-yellow-300"></i> Ансамбль «Вьюнки» и «Жива»</li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-yellow-300"></i> Фольклор и эстрада</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" class="py-28 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <div class="text-pink-400 text-sm font-medium tracking-widest">МОМЕНТЫ ТВОРЧЕСТВА</div>
+                    <h2 class="text-5xl font-black">Галерея</h2>
+                </div>
+                <a href="https://vk.com/club71884997" target="_blank" 
+                   class="text-yellow-300 flex items-center gap-2 hover:text-white transition-colors">
+                    Смотреть больше в VK <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div data-aos="zoom-in" class="overflow-hidden rounded-3xl aspect-video">
+                    <img src="https://picsum.photos/id/201/800/600" 
+                         alt="Оркестр народных инструментов"
+                         class="gallery-img w-full h-full object-cover">
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="100" class="overflow-hidden rounded-3xl aspect-video">
+                    <img src="https://picsum.photos/id/251/800/600" 
+                         alt="Хореографический ансамбль"
+                         class="gallery-img w-full h-full object-cover">
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="200" class="overflow-hidden rounded-3xl aspect-video">
+                    <img src="https://picsum.photos/id/29/800/600" 
+                         alt="Театральная постановка"
+                         class="gallery-img w-full h-full object-cover">
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="300" class="overflow-hidden rounded-3xl aspect-video">
+                    <img src="https://picsum.photos/id/160/800/600" 
+                         alt="Концерт в зале"
+                         class="gallery-img w-full h-full object-cover">
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="400" class="overflow-hidden rounded-3xl aspect-video">
+                    <img src="https://picsum.photos/id/201/800/600" 
+                         alt="Урок фортепиано"
+                         class="gallery-img w-full h-full object-cover">
+                </div>
+                <div data-aos="zoom-in" data-aos-delay="500" class="overflow-hidden rounded-3xl aspect-video">
+                    <img src="https://picsum.photos/id/318/800/600" 
+                         alt="Фольклорный ансамбль"
+                         class="gallery-img w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COLLECTIVES / TEAM -->
+    <section id="team" class="py-28 bg-gradient-to-b from-zinc-900 to-black">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-black mb-4">Наши творческие коллективы</h2>
+                <p class="max-w-md mx-auto text-white/60">Гордость школы — 12 ансамблей и оркестров, которые выступают на областных и международных сценах</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div data-aos="fade-up" class="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10">
+                    <div class="text-6xl mb-6">🎻</div>
+                    <div class="font-semibold text-2xl">Оркестр народных инструментов</div>
+                    <div class="text-pink-400 mt-2">Руководитель — педагоги музыкального отделения</div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100" class="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10">
+                    <div class="text-6xl mb-6">🕺</div>
+                    <div class="font-semibold text-2xl">Хореографические ансамбли «Непоседы» и «Росинка»</div>
+                    <div class="text-pink-400 mt-2">Классика, народные и современные танцы</div>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200" class="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10">
+                    <div class="text-6xl mb-6">🎭</div>
+                    <div class="font-semibold text-2xl">Театр «Муравейник» и фольклорный театр</div>
+                    <div class="text-pink-400 mt-2">Кукольные и академические спектакли</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTS -->
+    <section id="contacts" class="py-28 bg-zinc-950 relative">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-16">
+            <div class="md:col-span-5" data-aos="fade-right">
+                <h2 class="text-6xl font-black mb-8">Приходи к нам!</h2>
+                
+                <div class="space-y-10">
+                    <div class="flex gap-6">
+                        <i class="fa-solid fa-location-dot text-4xl text-yellow-300 mt-1"></i>
+                        <div>
+                            <div class="font-medium text-xl">Самарская область, Приволжский район</div>
+                            <div class="text-white/80">с. Приволжье, ул. Волжская, 3</div>
+                            <a href="https://yandex.ru/maps/org/detskaya_shkola_iskusstv/1069773349/" 
+                               target="_blank"
+                               class="text-cyan-400 hover:underline text-sm mt-2 inline-block">
+                                Открыть на Яндекс.Картах →
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-6">
+                        <i class="fa-solid fa-phone text-4xl text-yellow-300 mt-1"></i>
+                        <div>
+                            <div class="font-medium text-xl">Телефон</div>
+                            <a href="tel:+78464791274" class="text-3xl font-light hover:text-yellow-300 transition-colors">8 (84647) 9-12-74</a>
+                            <div class="text-xs text-white/60 mt-1">вахта: 8 (84647) 9-14-00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-6">
+                        <i class="fa-solid fa-envelope text-4xl text-yellow-300 mt-1"></i>
+                        <div>
+                            <div class="font-medium text-xl">Электронная почта</div>
+                            <a href="mailto:agvsamara@mail.ru" class="text-xl hover:text-pink-300 transition-colors">agvsamara@mail.ru</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-16 bg-white/5 rounded-3xl p-8">
+                    <div class="flex items-center gap-4">
+                        <i class="fa-brands fa-vk text-4xl"></i>
+                        <div>
+                            <a href="https://vk.com/club71884997" target="_blank" class="font-medium text-xl hover:text-blue-400">Мы в ВКонтакте</a>
+                            <div class="text-xs text-white/60">Фото, новости, концерты</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FORM -->
+            <div class="md:col-span-7 bg-white/5 backdrop-blur-3xl rounded-3xl p-12" data-aos="fade-left">
+                <h3 class="text-3xl font-semibold mb-8">Записаться на пробный урок</h3>
+                <form id="contact-form" class="space-y-8">
+                    <div class="grid grid-cols-2 gap-6">
+                        <input type="text" placeholder="Имя ребёнка" required
+                               class="bg-transparent border border-white/30 focus:border-yellow-300 rounded-2xl px-6 py-5 text-lg outline-none transition-colors">
+                        <input type="text" placeholder="Возраст" required
+                               class="bg-transparent border border-white/30 focus:border-yellow-300 rounded-2xl px-6 py-5 text-lg outline-none transition-colors">
+                    </div>
+                    <input type="text" placeholder="Имя родителя" required
+                           class="bg-transparent border border-white/30 focus:border-yellow-300 rounded-2xl px-6 py-5 text-lg outline-none transition-colors w-full">
+                    <input type="tel" placeholder="Телефон" required
+                           class="bg-transparent border border-white/30 focus:border-yellow-300 rounded-2xl px-6 py-5 text-lg outline-none transition-colors w-full">
+                    <select class="bg-transparent border border-white/30 focus:border-yellow-300 rounded-2xl px-6 py-5 text-lg outline-none transition-colors w-full">
+                        <option value="">Выберите направление</option>
+                        <option>Музыкальное отделение</option>
+                        <option>Хореография</option>
+                        <option>Театральное искусство</option>
+                    </select>
+                    
+                    <button type="submit"
+                            class="w-full py-7 bg-gradient-to-r from-yellow-400 to-pink-500 text-black font-bold text-xl rounded-3xl hover:scale-105 active:scale-95 transition-all">
+                        ОТПРАВИТЬ ЗАЯВКУ
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black py-16 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex justify-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-br from-violet-500 to-pink-500 rounded-3xl flex items-center justify-center">
+                    <i class="fa-solid fa-palette text-4xl"></i>
+                </div>
+            </div>
+            
+            <div class="text-white/40 text-sm mb-8">
+                Муниципальное бюджетное образовательное учреждение дополнительного образования<br>
+                «Приволжская детская школа искусств» • 445560, Самарская область, с. Приволжье
+            </div>
+            
+            <div class="text-xs text-white/30">
+                © 1968–2026 • Сделано с ❤️ для творчества
+            </div>
+        </div>
     </footer>
-  </main>
 
-  <!-- GSAP для анимаций -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      gsap.from("header", {
-        duration: 0.8,
-        y: -30,
-        opacity: 0,
-        ease: "power3.out"
-      });
-
-      gsap.from("main section:first-of-type h1, main section:first-of-type p", {
-        duration: 1,
-        opacity: 0,
-        y: 24,
-        ease: "power3.out",
-        stagger: 0.15,
-        delay: 0.1
-      });
-
-      gsap.from(".hero-coffee-inner", {
-        duration: 1.2,
-        opacity: 0,
-        scale: 0.85,
-        rotate: -6,
-        ease: "power3.out",
-        delay: 0.2
-      });
-
-      gsap.to(".hero-coffee-inner", {
-        rotate: 3,
-        yoyo: true,
-        repeat: -1,
-        duration: 6,
-        ease: "sine.inOut"
-      });
-    });
-  </script>
+    <script>
+        // Tailwind script run
+        function initializeTailwind() {
+            // Already initialized via CDN
+        }
+        
+        // AOS initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({
+                duration: 900,
+                once: true,
+                offset: 100
+            });
+            
+            // Mobile menu toggle
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                const icon = mobileBtn.querySelector('i');
+                if (icon.classList.contains('fa-bars')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                } else {
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-xmark');
+                }
+            });
+            
+            // Smooth scroll for all anchors
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#') return;
+                    
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Close mobile menu
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                            const icon = mobileBtn.querySelector('i');
+                            icon.classList.add('fa-bars');
+                            icon.classList.remove('fa-xmark');
+                        }
+                    }
+                });
+            });
+            
+            // Contact form fake submit
+            const form = document.getElementById('contact-form');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const btn = this.querySelector('button');
+                const originalText = btn.textContent;
+                
+                btn.innerHTML = `
+                    <span class="inline-block animate-spin mr-3">⟳</span>
+                    ОТПРАВЛЯЕМ...
+                `;
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    alert('✅ Заявка успешно отправлена! Мы свяжемся с вами в течение 2 рабочих дней.');
+                    form.reset();
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                }, 1800);
+            });
+            
+            // Floating animation keyframes
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes float {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-25px); }
+                }
+                @keyframes floatDelay {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-35px); }
+                }
+                .animate-float { animation: float 6s ease-in-out infinite; }
+                .animate-float-delay { animation: float 8s ease-in-out infinite; }
+                .animate-float-delay2 { animation: floatDelay 7s ease-in-out infinite; }
+            `;
+            document.head.appendChild(style);
+        });
+        
+        // Keyboard escape for mobile menu
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    const icon = document.getElementById('mobile-menu-btn').querySelector('i');
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-xmark');
+                }
+            }
+        });
+    </script>
 </body>
 </html>
